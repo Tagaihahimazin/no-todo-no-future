@@ -43,6 +43,13 @@ $ sudo docker-compose exec web /bin/bash
 localhost:18000
 ```
 
+## databaseがないとき
+
+```
+python manage.py sqlmigrate polls 0001
+python manage.py migrate
+```
+
 ##  
 
 ```
