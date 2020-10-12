@@ -44,6 +44,7 @@ localhost:18000
 ```
 
 ## databaseがないとき
+下記コマンドを叩いた後、
 
 ```
 python manage.py sqlmigrate polls 0001
