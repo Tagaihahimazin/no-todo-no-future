@@ -50,6 +50,15 @@ python manage.py sqlmigrate polls 0001
 python manage.py migrate
 ```
 
+## 管理者アカウントの追加
+
+```
+
+python manage.py createsuperuser
+
+```
+
+
 ##  
 
 ```
