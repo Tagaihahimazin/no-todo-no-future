@@ -43,6 +43,23 @@ $ sudo docker-compose exec web /bin/bash
 localhost:18000
 ```
 
+## databaseがないとき
+下記コマンドを叩いた後、
+
+```
+python manage.py sqlmigrate polls 0001
+python manage.py migrate
+```
+
+## 管理者アカウントの追加
+
+```
+
+python manage.py createsuperuser
+
+```
+
+
 ##  
 
 ```

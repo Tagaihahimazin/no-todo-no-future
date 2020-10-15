@@ -1,0 +1,9 @@
+{% extends 'testpredict/index.html' %}
+
+{% block content %}
+    <h2>TODOを追加する</h2>
+    <form method="POST" class="todo-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">追加する</button>
+    </form>
+{% endblock %}
