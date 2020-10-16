@@ -43,12 +43,13 @@ def predict(input_task1='資格の勉強'):
   pred=clf.predict_log_proba(X_test)
 
   category = {
-      'kadai': 0,
-      'MTG':1,
+      'study': 0,
+      'work':1,
       'training':2,
       'buy':3,
       'contact':4,
       'programming':5,
+      'kaji':6,
     }
 
   #逆引き
