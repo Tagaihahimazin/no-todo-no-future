@@ -5,6 +5,8 @@
 - honda2
 - ikeda
 - よろしくお願いいたします。
+- cpy許すまじ
+- PIEN
 
 
 ## Djangoプロジェクトの作成・設定
