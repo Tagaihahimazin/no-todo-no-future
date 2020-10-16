@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+
 from .NLP import helloworld
 from .NLP import predict
 
@@ -14,7 +15,8 @@ def index(request):
     return HttpResponse("index page")
 
 def textpredict():
-    #print("test")
+    
+    print("test")
     helloworld.helloworld()
     entry = task_class.objects.get(pk=1)
     pred = predict.predict(entry.todo_text)
@@ -22,3 +24,6 @@ def textpredict():
     entry.todo_pred = pred
     entry.save()
     print(task_class.objects.get(pk=1).todo_pred)
+    
+
+
