@@ -6,6 +6,7 @@ from .NLP import predict
 
 # database
 from testpredict.models import Taskclassification as task_class
+#from testpredict.models import load_NLP
 from .forms import TodoForm
 
 # Create your views here.
@@ -20,12 +21,19 @@ def todo(request):
     return HttpResponse("todo page")
 
 def textpredict(todo_text):
-    #print("test")
+    debug=False
+    upload_debug=True
+
+    print("test")
     #helloworld.helloworld()
     #entry = task_class.objects.get(pk=1)
     #entry = task_class.
     entry = task_class(todo_text=todo_text, todo_pred='other')
-    pred = predict.predict(entry.todo_text)
+    if upload_debug:
+        #c,m=predict.load_model_file()
+        predict.upload_db()
+
+    pred = predict.predict(entry.todo_text,debug)
     entry.todo_pred = pred
     entry.save()
     return pred
