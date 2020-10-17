@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 from .NLP import helloworld
 from .NLP import predict
+from .NLP import train
 
 # database
 from testpredict.models import Taskclassification as task_class
@@ -30,12 +31,16 @@ def textpredict(todo_text):
     #entry = task_class.
     entry = task_class(todo_text=todo_text, todo_pred='other')
     if upload_debug:
-        #c,m=predict.load_model_file()
-        predict.upload_db()
+        c,m=predict.load_model_file()
+        predict.upload_db(c,m)
 
     pred = predict.predict(entry.todo_text,debug)
     entry.todo_pred = pred
     entry.save()
+
+    print(task_class.objects.values_list('todo_text', flat=True))
+
+    train.train()
     return pred
 
 def PostTodo(request):
