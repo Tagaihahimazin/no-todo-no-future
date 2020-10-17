@@ -12,9 +12,73 @@ from .NLP import train
 from testpredict.models import Taskclassification as task_class
 #from testpredict.models import load_NLP
 from .forms import TodoForm
+from django.contrib import messages
 
 # Create your views here.
+def home(request):
 
+  if request.method == 'POST':
+      #form = ListForm(request.POST or None)
+      form = TodoForm(request.POST or None)
+
+      if form.is_valid():
+        form.save()
+        #all_items = List.objects.all
+        all_items = task_class.objects.all
+        messages.success(request, ('Item Has Been Added To List'))
+        #return render(request, 'todoapp/home.html', {'all_items': all_items})
+        return render(request, 'testpredict/home2.html', {'all_items': all_items})
+  else:
+      #all_items = List.objects.all
+      all_items = task_class.objects.all
+      #return render(request, 'todoapp/home.html', {'all_items': all_items})
+      return render(request, 'testpredict/home2.html', {'all_items': all_items})
+
+def about(request):
+  context = {'first_name': 'Kazufumi', 'last_name': 'Honda'}
+  return render(request, 'testpredict/about.html', context)
+
+def delete(request, list_id):
+  #item = List.objects.get(pk=list_id)
+  item = task_class.objects.get(pk=list_id)
+  item.delete()
+  messages.success(request, ('Item Has Been Deleted from List'))
+  return redirect('testpredict:home')
+
+def uncomplete(request, list_id):
+  #item = List.objects.get(pk=list_id)
+  item = task_class.objects.get(pk=list_id)
+  item.completed = False
+  item.save()
+  return redirect('testpredict:home')
+
+def complete(request, list_id):
+  #item = List.objects.get(pk=list_id)
+  item = task_class.objects.get(pk=list_id)
+  item.completed = True
+  item.save()
+  return redirect('testpredict:home')
+
+def edit(request, list_id):
+  if request.method == 'POST':
+    #item = List.objects.get(pk=list_id)
+    item = task_class.objects.get(pk=list_id)
+    #form = ListForm(request.POST or None, instance=item)
+    form = TodoForm(request.POST or None, instance=item)
+
+    if form.is_valid():
+      form.save()
+      #all_items = List.objects.all
+      all_items = task_class.objects.all
+      messages.success(request, ('Item Has Been Edited'))
+      return redirect('testpredict:home')
+
+  else:
+    #item = List.objects.get(pk=list_id)
+    item = task_class.objects.get(pk=list_id)
+    #return render(request, 'todoapp/edit.html', {'item': item})
+    return render(request, 'testpredict/edit.html', {'item': item})
+'''
 def index(request):
     
     return PostTodo(request)
@@ -62,15 +126,15 @@ def PostTodo(request):
 
     return render(request, 'testpredict/todo.html', {'form': form})
 
-
-#ログイン処理
+'''
+####ログイン処理
 
 def top(request):
     return render(request,"testpredict/top.html")
 
 @login_required
-def home(request):
-    return render(request,"testpredict/home.html")
+#def home(request):
+#    return render(request,"testpredict/home.html")
 
 def singnup(request):
     if request.method == 'POST':
