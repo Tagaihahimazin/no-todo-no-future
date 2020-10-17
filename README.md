@@ -58,6 +58,7 @@ python manage.py migrate
 ```
 python manage.py makemigrations testpredict
 python manage.py migrate
+```
 ## 管理者アカウントの追加
 
 ```
