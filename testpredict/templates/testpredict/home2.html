@@ -23,7 +23,9 @@
     <table class="table table-bordered">
       <tr class="table-primary">
         <th>TO-DO ITEM</th>
+        
         <th><center>STATUS CHANGE</center></th>
+        <th><center>Pred-Task</center></th>
         <th><center>DEADLINE</center></th>
         <th><center>DELETE ITEM</center></th>
       </tr>
@@ -31,6 +33,7 @@
           {% if todo.completed %}
             <tr class="table-secondary">
                 <td class="striker"><a href="{% url 'testpredict:edit' todo.id %}">{{ todo.item }}</a></td>
+                <td><center>{{ todo.True_pred }}</center></td>
                 <td><center><a href="{% url 'testpredict:uncomplete' todo.id %}"><div class="bg-warning rounded">Uncomplete</div></a></center></td>
                 <td><center>{{ todo.deadline }}</center></td>
                 <td><center><a href="{% url 'testpredict:delete' todo.id %}"><div class="bg-warning rounded">Delete</div></a></center></td>
@@ -38,6 +41,7 @@
           {% else %}
             <tr class="table-info">
                 <td><a href="{% url 'testpredict:edit' todo.id %}">{{ todo.item }}</td></td>
+                <td><center>{{ todo.True_pred }}</center></td>
                 <td><center><a href="{% url 'testpredict:complete' todo.id %}"><div class="bg-light rounded">Complete</div></a></center></td>
                 <td><center>{{ todo.deadline }}</center></td>
 
