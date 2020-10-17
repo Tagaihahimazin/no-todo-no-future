@@ -5,6 +5,8 @@
 - honda2
 - ikeda
 - よろしくお願いいたします。
+- cpy許すまじ
+- PIEN
 
 
 ## Djangoプロジェクトの作成・設定
@@ -51,6 +53,12 @@ python manage.py sqlmigrate polls 0001
 python manage.py migrate
 ```
 
+## databaseの1146エラー（テーブルがありません）対策
+下記コマンドを叩く。
+```
+python manage.py makemigrations testpredict
+python manage.py migrate
+```
 ## 管理者アカウントの追加
 
 ```
