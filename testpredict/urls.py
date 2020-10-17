@@ -14,7 +14,8 @@ urlpatterns = [
     #path('post/todo/', views.todo, name='todo'),
     
     #######################################
-    path('home/', views.home, name='home'),
+    #path('home/', views.home, name='home'),
+    path('TODOLIST/', views.TODOLIST, name='TODOLIST'),
     path('about/', views.about, name='about'),
     path('delete/<list_id>', views.delete, name='delete'),
     path('uncomplete/<list_id>', views.uncomplete, name="uncomplete"),
