@@ -7,7 +7,7 @@ app_name = "testpredict"
 urlpatterns = [
     # ex: /testpredict/
     # textboxとbutton表示
-    path('index/', views.index, name='index'),
+    #path('', views.index, name='index'),
     # 要検証
     path('post/new/', views.PostTodo, name='PostTodo'),
     path('post/todo/', views.todo, name='todo'),
