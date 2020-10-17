@@ -1,3 +1,4 @@
-
-composeexample/settings.py
 *.pyc
+__pycache__
+local_settings.py
+.DS_Store
