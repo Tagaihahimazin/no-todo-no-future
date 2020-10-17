@@ -2,3 +2,4 @@
 composeexample/settings.py
 *.pyc
 *.pyc
+local_settings.py
