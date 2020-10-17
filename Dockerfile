@@ -17,6 +17,7 @@ RUN pip3 install dj-database-url
 RUN pip3 install whitenoise==5.0.1
 RUN pip3 install gunicorn
 RUN pip3 install pytz
+RUN pip3 install django-heroku
 RUN apt-get update && apt-get -y install vim
 ADD . /code/
 
