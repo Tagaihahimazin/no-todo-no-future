@@ -1,7 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 from .NLP import helloworld
@@ -68,7 +67,6 @@ def PostTodo(request):
 def top(request):
     return render(request,"testpredict/top.html")
 
-@login_required
 def home(request):
     return render(request,"testpredict/home.html")
 
