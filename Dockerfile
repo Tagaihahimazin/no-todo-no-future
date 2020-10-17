@@ -13,6 +13,10 @@ RUN pip3 install sklearn
 RUN pip3 install janome
 RUN pip3 install django-picklefield
 RUN pip3 install psycopg2
+RUN pip3 install dj-database-url
+RUN pip3 install whitenoise==5.0.1
+RUN pip3 install gunicorn
+RUN pip3 install pytz
 RUN apt-get update && apt-get -y install vim
 ADD . /code/
 
