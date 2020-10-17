@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
 from .NLP import helloworld
 from .NLP import predict
 
@@ -17,7 +16,6 @@ def index(request):
     #textpredict()
     #return HttpResponse("index page")
 
-
 def todo(request):
     return HttpResponse("todo page")
 
@@ -30,7 +28,6 @@ def textpredict(todo_text):
     pred = predict.predict(entry.todo_text)
     entry.todo_pred = pred
     entry.save()
-
     return pred
 
 def PostTodo(request):
@@ -48,4 +45,3 @@ def PostTodo(request):
         form = TodoForm()
 
     return render(request, 'testpredict/todo.html', {'form': form})
-
