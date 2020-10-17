@@ -127,6 +127,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = "testpredict:index"
+LOGIN_URL = "login"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #DEBUG = False
