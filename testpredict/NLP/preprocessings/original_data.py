@@ -11,21 +11,23 @@ data_DIR = os.path.join(BASE_DIR, 'data', 'test_data')
 def load_df():
   ##ラベルづけ
   category = {
-    'kadai': 0,
-    'MTG':1,
+    'study': 0,
+    'work':1,
     'training':2,
     'buy':3,
     'contact':4,
     'programming':5,
+    'kaji':6,
     
   }
   docs  = []
   labels = []
 
   for c_name, c_id in category.items():
-    files = glob.glob(data_DIR + "/text/{c_name}/*.txt".format(c_name=c_name))
+    #files = glob.glob(data_DIR + "/text/{c_name}/*.txt".format(c_name=c_name))
+    files=glob.glob("testpredict/NLP/data/test_data/text/{c_name}/*.txt".format(c_name=c_name))
 
-    text = ''
+    #text = ''
     for file in files:#一応複数データに対応
       with open(file, 'r',encoding="utf-8") as f:#######encoding="utf-8"
         lines = f.read().splitlines()#読み分け区分

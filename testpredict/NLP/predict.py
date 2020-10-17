@@ -40,18 +40,14 @@ def load_model_file():
   #return fp_count,fp_clf
   return count,clf
 
-def upload_db():
+def upload_db(count,clf):
   
   #書き込み
-  count,clf=load_model_file()
-  
-
+  #count,clf=load_model_file()
   #count_by= pickle.dumps(count)
   #clf_by= pickle.dumps(clf)
   #count_str=base64.b64encode(pickle.dumps(count)).decode("utf-8")
   #clf_str=base64.b64encode(pickle.dumps(clf)).decode("utf-8")
-  
-
   #z=load_NLP(NLP_bow=count, NLP_clf=clf)
 
   z=load_NLP()
@@ -94,27 +90,28 @@ def predict(input_task1='資格の勉強',debug=False):
     #upload_db()
     
     data1=load_NLP.objects.get(pk=1)
-    bow={}
+    #bow={}
     bow=data1.NLP_bow
     data2=load_NLP2.objects.get(pk=1)
-    model={}
+    #model={}
     model=data2.NLP_clf
 
     #print("aaaaaaaaaaaaaaaaaaaaaaaaa")
     #print(model)
-
-
-
     #count= pickle.load(bow)
     #clf= pickle.load(model)
 
-    #clf = {}
-    clf = model["pickle"]
-    clf = pickle.loads(base64.b64decode(clf.encode()))
 
-    #count = {}
-    count = bow["pickle"]
-    count = pickle.loads(base64.b64decode(count.encode()))
+    
+    #clf = model["pickle"]
+    #clf = pickle.loads(base64.b64decode(clf.encode()))
+    #count = bow["pickle"]
+    #count = pickle.loads(base64.b64decode(count.encode()))
+
+    
+    
+    clf = pickle.loads(base64.b64decode(model.encode()))
+    count = pickle.loads(base64.b64decode(bow.encode()))
     
 
  
