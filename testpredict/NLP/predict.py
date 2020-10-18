@@ -154,8 +154,10 @@ def predict(input_task1='資格の勉強',debug=False):
           if x == v:
               return k
 
+  print(pred)
 
-  if pred.max()<-1:
+
+  if pred.max()<-1.1:
     return 'other'
     #print('else')
   else:

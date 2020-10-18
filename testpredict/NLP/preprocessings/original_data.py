@@ -51,7 +51,8 @@ def load_df():
       #labels.append(c_id)
   df = pd.DataFrame(data = { 'docs': docs, 'labels': labels })
   np.random.seed(0)
-  return df.reindex(np.random.permutation(df.index))
+  #return df.reindex(np.random.permutation(df.index))
+  return df
 
 
 a=load_df()
