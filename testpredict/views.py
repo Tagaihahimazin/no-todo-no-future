@@ -7,12 +7,14 @@ from django.contrib.auth.forms import UserCreationForm
 from .NLP import helloworld
 from .NLP import predict
 from .NLP import train
+from .NLP import retrain
 
 # database
 from testpredict.models import Taskclassification as task_class
 #from testpredict.models import pred_db
 #from testpredict.models import load_NLP
 from .forms import TodoForm
+from .forms import ChangeTodoForm
 from django.contrib import messages
 
 # Create your views here.
@@ -35,6 +37,7 @@ def TODOLIST(request):
         #task=task_class.objects.get(pk=1)
         #task_item=task.item
         print(str(task))
+        print("aaaaaaaaaaaaaaaaaaaaaaaaaa")
         print(all_items)
         pred = predict.predict(str(task),False)
         print(pred)
@@ -42,8 +45,6 @@ def TODOLIST(request):
         q=task_class(item=task,todo_pred=pred,True_pred=pred)
         q.save()
         
-        
-
         return render(request, 'testpredict/home2.html', {'all_items': all_items})
   else:
       #all_items = List.objects.all
@@ -79,24 +80,62 @@ def complete(request, list_id):
   return redirect('testpredict:TODOLIST')
 
 def edit(request, list_id):
+  #print(request.META)
+  '''
+  if request.method == 'POST':
+    if 'item' in request.POST:
+      #item = List.objects.get(pk=list_id)
+      item = task_class.objects.get(pk=list_id)
+      #form = ListForm(request.POST or None, instance=item)
+      form = TodoForm(request.POST or None, instance=item)
+    
+      if form.is_valid() :
+        form.save()
+        #all_items = List.objects.all
+        all_items = task_class.objects.all
+        messages.success(request, ('Item Has Been Edited'))
+        return redirect('testpredict:TODOLIST')
+
+    if 'True_pred' in request.POST:
+
+      #item = List.objects.get(pk=list_id)
+      item = task_class.objects.get(pk=list_id)
+      #form = ListForm(request.POST or None, instance=item)
+      form = TodoForm(request.POST or None, instance=item)
+    
+      if form.is_valid() :
+        form.save()
+        #all_items = List.objects.all
+        all_items = task_class.objects.all
+        messages.success(request, ('Item Has Been Edited'))
+        return redirect('testpredict:TODOLIST')
+  '''
   if request.method == 'POST':
     #item = List.objects.get(pk=list_id)
     item = task_class.objects.get(pk=list_id)
     #form = ListForm(request.POST or None, instance=item)
-    form = TodoForm(request.POST or None, instance=item)
+    form = ChangeTodoForm(request.POST or None, instance=item)
 
     if form.is_valid():
       form.save()
       #all_items = List.objects.all
       all_items = task_class.objects.all
       messages.success(request, ('Item Has Been Edited'))
+
+      #再学習
+      retrain.retrain()
+
       return redirect('testpredict:TODOLIST')
 
+    
   else:
     #item = List.objects.get(pk=list_id)
     item = task_class.objects.get(pk=list_id)
+  
+    print(item.True_pred)
     #return render(request, 'todoapp/edit.html', {'item': item})
     return render(request, 'testpredict/edit.html', {'item': item})
+
 '''
 def index(request):
     
