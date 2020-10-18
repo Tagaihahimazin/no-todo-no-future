@@ -1,7 +1,7 @@
 from django.db import models
 from picklefield.fields import PickledObjectField
 
-#from django.contrib.postgres.fields import JSONField
+from django.contrib.postgres.fields import JSONField
 
 
 #from django.contrib.postgres.fields import JSONField
@@ -26,15 +26,13 @@ class Taskclassification(models.Model):
         return self.item
 
 class load_NLP(models.Model):
-    #NLP_bow=JSONField()
-    NLP_bow=models.JSONField()
+    NLP_bow=JSONField()
     def __str__(self):
         return self.NLP_bow
 
 
 class load_NLP2(models.Model):
-    #NLP_clf=JSONField()
-    NLP_clf=models.JSONField()
+    NLP_clf=JSONField()
     def __str__(self):
         return self.NLP_clf
 

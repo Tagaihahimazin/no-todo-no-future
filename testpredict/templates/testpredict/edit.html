@@ -3,14 +3,16 @@
   To-Do List | Edit Item
 {% endblock %}
 {% block content %}
-  {% if item %}
+
+{% if item %}
     {{ item.item }}
     <form class="form-inline my-2 my-lg-0" method="POST">
       {% csrf_token %}
       <input class="form-control mr-sm-2" type="search" placeholder="{{ item.item }}" value="{{ item.item }}" aria-label="Search" name="item">
+      <input class="form-control mr-sm-2" type="search" placeholder="{{ item.True_pred }}" value="{{ item.True_pred }}" aria-label="Search" name="True_pred">
       <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Edit Item</button>
-      <input type="hidden" value="{{ item.completed }}" name="completed">
     </form>
+{% endif %}
     <br>
     <p>タスク分類結果 ：{{ item.True_pred }}</p>
 
@@ -23,5 +25,4 @@
 
     
   {% endif %}
-
 {% endblock %}
