@@ -7,4 +7,11 @@ class TodoForm(forms.ModelForm):
     class Meta:
         model = task_class
         #fields = ('todo_text',)
-        fields = ('item',"completed")
+        fields = ('item',"completed",)
+
+class ChangeTodoForm(forms.ModelForm):
+    
+    class Meta:
+        model = task_class
+        #fields = ('todo_text',)
+        fields = ('item', "True_pred","completed",)
