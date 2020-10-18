@@ -19,6 +19,8 @@ from django.contrib import messages
 
 # Create your views here.
 #def home(request):
+
+@login_required
 def TODOLIST(request):
 
   if request.method == 'POST':

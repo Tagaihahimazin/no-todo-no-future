@@ -10,7 +10,7 @@
 <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'testpredict:top' %}">testpredict</a>
+        <a class="navbar-brand" href="{% url 'testpredict:top' %}">NO TODO NO FUTURE</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,17 +20,17 @@
           <ul class="navbar-nav">
             {% if request.user.is_authenticated %}
             <span class="navbar-text">
-              こんにちは {{ request.user.username }} さん
+              Hello {{ request.user.username }}
             </span>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
+              <a class="nav-link" href="{% url 'logout' %}">Sign out</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">ログイン</a>
+              <a class="nav-link" href="{% url 'login' %}">Sign in</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'testpredict:signup' %}">サインアップ</a>
+              <a class="nav-link" href="{% url 'testpredict:signup' %}">Sign up</a>
             </li>
             {% endif %}
           </ul>
