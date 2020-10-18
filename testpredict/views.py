@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .NLP import helloworld
 from .NLP import predict
 from .NLP import train
+from .NLP import retrain
 
 # database
 from testpredict.models import Taskclassification as task_class
@@ -77,24 +78,62 @@ def complete(request, list_id):
   return redirect('testpredict:TODOLIST')
 
 def edit(request, list_id):
+  #print(request.META)
+  '''
+  if request.method == 'POST':
+    if 'item' in request.POST:
+      #item = List.objects.get(pk=list_id)
+      item = task_class.objects.get(pk=list_id)
+      #form = ListForm(request.POST or None, instance=item)
+      form = TodoForm(request.POST or None, instance=item)
+    
+      if form.is_valid() :
+        form.save()
+        #all_items = List.objects.all
+        all_items = task_class.objects.all
+        messages.success(request, ('Item Has Been Edited'))
+        return redirect('testpredict:TODOLIST')
+
+    if 'True_pred' in request.POST:
+
+      #item = List.objects.get(pk=list_id)
+      item = task_class.objects.get(pk=list_id)
+      #form = ListForm(request.POST or None, instance=item)
+      form = TodoForm(request.POST or None, instance=item)
+    
+      if form.is_valid() :
+        form.save()
+        #all_items = List.objects.all
+        all_items = task_class.objects.all
+        messages.success(request, ('Item Has Been Edited'))
+        return redirect('testpredict:TODOLIST')
+  '''
   if request.method == 'POST':
     #item = List.objects.get(pk=list_id)
     item = task_class.objects.get(pk=list_id)
     #form = ListForm(request.POST or None, instance=item)
     form = TodoForm(request.POST or None, instance=item)
-
-    if form.is_valid():
+  
+    if form.is_valid() :
       form.save()
       #all_items = List.objects.all
       all_items = task_class.objects.all
       messages.success(request, ('Item Has Been Edited'))
+
+      #再学習
+      retrain.retrain()
+
       return redirect('testpredict:TODOLIST')
 
+    
   else:
     #item = List.objects.get(pk=list_id)
     item = task_class.objects.get(pk=list_id)
+  
+    print(item.True_pred)
     #return render(request, 'todoapp/edit.html', {'item': item})
     return render(request, 'testpredict/edit.html', {'item': item})
+
 '''
 def index(request):
     
