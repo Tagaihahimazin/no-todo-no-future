@@ -79,12 +79,23 @@ WSGI_APPLICATION = 'composeexample.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'django_docker',
+#        'USER': 'root',
+#        'HOST': 'db',
+#        'POST': 33306,
+#    }
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_docker',
-        'USER': 'root',
-        'HOST': 'db',
+        'NAME': 'heroku_dfe17d02542d70b',
+        'USER': 'bb7893a9c6744a',
+        'PASSWORD': '59fc6698',
+        'HOST': 'us-cdbr-east-02.cleardb.com',
         'POST': 33306,
     }
 }
@@ -126,7 +137,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-LOGIN_REDIRECT_URL = "testpredict:index"
+#LOGIN_REDIRECT_URL = "testpredict:index"
+#LOGIN_REDIRECT_URL = "testpredict:home"
+LOGIN_REDIRECT_URL = "testpredict:TODOLIST"
+LOGIN_URL = "login"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 #DEBUG = False
@@ -143,5 +157,5 @@ if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
     import django_heroku
     django_heroku.settings(locals())
-
+    del DATABASES['default']['OPTIONS']['sslmode']
 

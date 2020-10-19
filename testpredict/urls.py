@@ -2,17 +2,29 @@ from django.urls import path
 
 from . import views
 
-app_name = "testpredict"
+app_name ="testpredict"
 
 urlpatterns = [
     # ex: /testpredict/
     # textboxとbutton表示
-    #path('', views.index, name='index'),
+    
+    #path('index/', views.index, name='index'),
     # 要検証
-    path('post/new/', views.PostTodo, name='PostTodo'),
-    path('post/todo/', views.todo, name='todo'),
+    #path('post/new/', views.PostTodo, name='PostTodo'),
+    #path('post/todo/', views.todo, name='todo'),
+    
+    #######################################
+    #path('home/', views.home, name='home'),
+    path('TODOLIST/', views.TODOLIST, name='TODOLIST'),
+    path('about/', views.about, name='about'),
+    path('delete/<list_id>', views.delete, name='delete'),
+    path('uncomplete/<list_id>', views.uncomplete, name="uncomplete"),
+    path('complete/<list_id>', views.complete, name="complete"),
+    path('edit/<list_id>', views.edit, name="edit"),
+    #######################################
     path("",views.top, name="top"),
-    path("home/", views.home, name="home"),
+    ##touroku
+    #path("home/", views.home, name="home"),
     path('signup/',views.singnup, name='signup'),
 
 ]
